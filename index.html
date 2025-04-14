@@ -12,18 +12,60 @@
       crossorigin="anonymous"
     />
      
+  <!-- Import stylesheet for the webpage-->
+   <link rel="stylesheet" href="./styles/styles.css">
 
   </head>
   <body>
 
     <!-- Container for navbar and header -->
+     <div class="container min-vh-75 pg-4">
+      <!-- minview 75, padding, remove  bg-white -->
 
       <!-- Navigation Bar -->
-      
-      <!-- Burger Menu that targets the navigation with the id sitMenu -->  
+      <!-- !https://getbootstrap.com/docs/5.3/components/navbar/#nav -->
+      <nav class="navbar navbar-expand-md navbar-dark">
+        <!-- change expand to see, set navbardark -->
+        <!-- Remove bg-body-tertiary"> -->
+        <div class="container-fluid">
+
+          <a class="navbar-brand" href="#">
+          <img src="./img/logo.png" alt="Company Logo" class="img-fluid">
+          <!-- "img-fluid" is responsive img -->
+        </a>
+
+
+      <!-- Burger Menu that targets the navigation with the id sitMenu -->
+       <!-- Still part of gbs.com navbar -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" ms-auto>
+              <!-- set next to -->
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Sign in/Login</a>
+                <!-- change from disabled" aria-disabled="true">Disabled-->
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+        
 
       <!-- Header -->
       
+    </div>
+    
     <!-- End for Container navbar and header -->
 
     <!-- Newsletter -->
