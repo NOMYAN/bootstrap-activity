@@ -3,7 +3,7 @@
   margin:0;
   padding:0;
   box-sizing: border-box;
-  outline: 1px dashed #ffff20;
+  /* outline: 1px dashed #ffff20; */
   /* outlinebox to test out area */
 }
 
@@ -22,9 +22,18 @@ body{
   background-blend-mode: overlay;
 }
 
+/* .btn_site_overall{
+  background-color: purple;
+  border: none;
+  color: #fff;
+} 
+Just use btn-primary to overwrite rather than creating new class?  
+*/
+
 .btn-primary{
   background-color:#ea383c !important;
   border: none !important;
+  /* !use !important to customize bootstrap, overwriting original styles */
 }
 
 .btn-primary:hover{

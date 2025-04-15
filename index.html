@@ -21,7 +21,7 @@
   <body>
 
     <!-- Container for navbar and header -->
-     <div class="container min-vh-75 pg-4">
+     <div class="container min-vh-75 p-4">
       <!-- minview 75, padding, remove  bg-white . container is the one that scale the website accordingly-->
 
       <!-- Navigation Bar -->
@@ -66,8 +66,8 @@
 
       <!-- Header -->
       <!-- Copy from https://getbootstrap.com/docs/5.3/examples/heroes/ -->
-      <header class="homebanner rounded-4 text-center m1-4 pt-2 d-flex flex-column align-items-center justify-content-center">
-        <!-- change the div to header - good for SEO as well. change to homebanner and adjust. display flex  -->
+      <header class="homebanner rounded-4 text-center mt-4 pt-2 d-flex flex-column align-items-center justify-content-center">
+        <!-- change the div to header - good for SEO as well. change to homebanner and adjust. d- flex is displayflex  -->
     
         <h1 class="display-1 text-white shadow-effects fw-lighter">Sole Runner</h1>
         <h4 class="display-6 text-white shadow-effects fw-lighter">Autumn Gear</h4>
@@ -83,11 +83,85 @@
     <!-- End for Container navbar and header -->
 
     <!-- Newsletter -->
+     <!-- create a container to wrap the form code -->
+     <div class="container mt-2">
+      
+      <div class="col-md-8 mx-auto">
+      <!-- container takes up 12 columns but here put 8/12 out of the container -->
+        <div class="text-white text-center fw-light pt-2 pb-2">Subscribe to our Newsletter:
+          
+        </div>
+      <form action="" method="post">
+
+      <!-- https://getbootstrap.com/docs/5.3/forms/input-group/ -->
+      <div class="input-group mb-3">
+        <input type="email" class="form-control" placeholder="e.g. johndoe@gmail.com" aria-label="Recipient's email" aria-describedby="button-newsletter" required>
+        <!-- change all the details. required is to prompt user! -->
+        
+        <button class="btn btn-primary" type="button" id="button-addon2">
+        <!-- change the btn to btn-primary(apply to whole site) -->
+
+       <!-- use https://icons.getbootstrap.com/icons/send/ for SVG icon  -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+          <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+        </svg>
+        Send</button>
+
+      </div>
+
+    </form>
+  </div>
+</div>
 
     <!-- Cards container -->
+    <div class="container mt-4">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+
+      <!-- https://getbootstrap.com/docs/5.3/components/card/#about -->
+        <!-- Card 1 -->
+        <div class="col">
+          <div class="card h-100">
+            <img src="./img/comfort.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title text-secondary fw-light">Uber comfort</h5>
+              <p class="card-text fw-light small">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col">
+          <div class="card h-100">
+            <img src="./img/performance.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title text-secondary fw-light">Made for performance</h5>
+              <p class="card-text fw-light small">This is a short card.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col">
+          <div class="card h-100">
+            <img src="./img/outdoor.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title text-secondary fw-light">All weather suit</h5>
+              <p class="card-text fw-light small">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+            </div>
+          </div>
+        </div>
     
+    
+      </div>
+    </div>
     
     <!-- Footer - Copyright -->
+     <footer class="text-white fw-light text-lg-start">
+      <div class="text-center p-3">
+        &copy; 2025 Copyright:
+        <a href="#" class="text-white text-decoration-none"> Airstream &#8482; All rights reserved.</a>
+      </div>
+     </footer>
     
 
     <script
