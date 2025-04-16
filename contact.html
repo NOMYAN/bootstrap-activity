@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>HTML + CSS</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+     
+  <!-- Import custom stylesheet for the webpage-->
+  <!-- after bootstrap cause read top-down -->
+   <link rel="stylesheet" href="./styles/styles.css">
+
+  </head>
+  <body>
+
+    <!-- Bootstrap Toast -->
+      <div class="toast-container p-3 top-0 start-50 translate-middle-x">
+
+      <!-- Toast here -->
+       <!-- !!!!!!!! -->
+      <div id="msg-toast" class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <!-- delete text-bg-primary to make it dynamic -->
+        <div class="d-flex">
+          <div id="toast-body" class="toast-body">
+
+          </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div> 
+
+    <!-- Container for navbar and header -->
+     <div class="container min-vh-75 p-4">
+      <!-- minview 75, padding, remove  bg-white . container is the one that scale the website accordingly-->
+
+      <!-- Navigation Bar -->
+      <!-- !https://getbootstrap.com/docs/5.3/components/navbar/#nav -->
+      <nav class="navbar navbar-expand-md navbar-dark">
+        <!-- change expand to see, set navbardark -->
+        <!-- Remove bg-body-tertiary"> -->
+        <div class="container-fluid">
+
+          <a class="navbar-brand" href="#">
+          <img src="./img/logo.png" alt="Company Logo" class="img-fluid">
+          <!-- "img-fluid" is responsive img -->
+        </a>
+
+
+      <!-- Burger Menu that targets the navigation with the id sitMenu -->
+       <!-- Still part of gbs.com navbar -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <!-- ms -clear everything from start so start from the right-->
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Sign in/Login</a>
+                <!-- change from disabled" aria-disabled="true">Disabled-->
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+        
+
+   </div>
+    
+    <!-- End for Container navbar and header -->
+
+    <!-- Container for contact form -->
+    <div class="container w-50 mt-4 text-white">
+      
+      <!-- Title -->
+      <div>
+        <h1 class="display-4 text-white fw-lighter">Contact Us</h1>
+      </div>
+ 
+      <!-- Contact Form -->
+      <form action="" method="post" novalidate class="needs-validation" onsubmit="submitForm();">
+        <!-- needscalidation for bootstrap javascript to work. using novalidate is because we don't want to use the default. Supressing any default carried out by the browser -->
+        <!-- https://getbootstrap.com/docs/5.3/forms/form-control/ -->
+        <div class="mb-3">
+          <!-- Change to TxtEmail and txtMessage naming conventions for easier readability-->
+          <label for="txtEmail" class="form-label">Email:</label>
+          <input type="email" class="form-control" id="txtEmail" placeholder="name@example.com" required>
+          <!-- rule: use required when use validation invalid-feedback -->
+          <div class="invalid-feedback text-white fw-lighter">
+            Please enter your email.
+          </div>    
+          <!-- https://getbootstrap.com/docs/5.3/forms/validation/ -->
+        </div>
+        <div class="mb-3">
+          <label for="txtMessage" class="form-label">Message:</label>
+          <textarea class="form-control" id="txtMessage" rows="3" placeholder="Enter your enquiry here." required></textarea>
+          <div class="invalid-feedback text-white fw-lighter">
+            Please enter your message.
+          </div>
+        </div>
+        <!-- https://getbootstrap.com/docs/5.3/forms/overview/ -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+ 
+    </div>
+    
+    <!-- Footer - Copyright -->
+     <footer class="text-white fw-light text-lg-start">
+      <div class="text-center p-3">
+        &copy; 2025 Copyright:
+        <a href="#" class="text-white text-decoration-none"> Airstream &#8482; All rights reserved.</a>
+      </div>
+     </footer>
+    
+
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+    ></script>
+
+    <!-- Create script and input javascript(anonymous function) from https://getbootstrap.com/docs/5.3/forms/validation/ -->
+    <script>
+      // listen for and process a submit event
+      // where function submitForm() is invoked
+      async function submitForm(){
+        // after using await fetch request, handinhand
+        event.preventDefault();
+        event.stopPropagation();
+        // alert("Your form has been submitted");
+
+        // Create instance of toast -Update to toast in function submitForm():
+        const toastMsgExample = document.getElementById('msg-toast');
+        const toastBodyExample = document.getElementById('toast-body');
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastMsgExample);
+
+
+        // create constant variables to capture form inputs
+        // our document has two elements by the id:txtEmail and txtMessage
+        const email = document.getElementById("txtEmail");
+        const message = document.getElementById("txtMessage");
+
+        // to trace values captured by our constant variables to process further
+        // this mean the interaction start to take place alr
+        // to track if page is capturing correct data to process
+        console.log(email.value);
+        console.log(message.value);
+
+        // trap unsuccessful event for textEmail or txtmessage
+        // as long as any value is key in, it works, unless declare
+        if(email.value === "" || message.value === "" ){
+          toastBodyExample.textContent = "Please enter all inputs";
+          toastMsgExample.classList.remove("text-bg-success");
+          toastMsgExample.classList.add("text-bg-danger");
+          toastBootstrap.show();
+          // alert("Invalid inputs. Please enter all fields correctly."); change to bootstrap
+          return;
+        }
+        // 2 =signs vs 3 =signs
+      
+
+        // trap unsuccessful event where txtEmail is invalid
+        // using regular expressions to check for valid email
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        // eg. @something.com
+        if(!emailRegex.test(email.value)){
+          // alert("Invalid email entered.");
+          toastBodyExample.textContent = "Email is not valid";
+          toastMsgExample.classList.remove("text-bg-success");
+          toastMsgExample.classList.add("text-bg-danger");
+          toastBootstrap.show();
+          return;
+          // syntax 
+        }
+
+        // trap unsuccessful event where txtMsg is invalid
+        // using a regular expression to check for injections or sql injections
+        const msgRegex = /^[a-zA-Z0-9\s.,!?'"-]*$/;
+        if(!msgRegex.test(message.value)){
+          // alert("Please enter a valid message.")
+          toastBodyExample.textContent = "Message is invalid";
+          toastMsgExample.classList.remove("text-bg-success");
+          toastMsgExample.classList.add("text-bg-danger");
+          toastBootstrap.show();
+          return;
+        }
+
+        // Fetch request: send data or retireve data by calling an API endpoint
+        // eg. ask question and get answers
+        // create a Javascript object to store our form data
+        const formData ={email:email.value, message:message.value};
+        // const = storing data into a variable that cannot be change. To let it be changeable use 'let'
+        // storing javascript object. Key: data
+       
+        // implement a try/catch (exception handling) block to send our message to an endpoint
+        // exception handling = handle errors that take place during runtime.
+        try {
+
+          // attempt to execute code below
+          const response = await fetch("https://getform.io/f/aejrxezb", {//TODO
+          // call fetch request to send data over to server
+          // send data to server need to wait so put await
+          method: "POST",
+          // 4 methods, but need to use fetch request
+          headers:{"Content-Type": "application/json"},
+          body: JSON.stringify(formData)
+          });
+
+          // if response.ok, provide feedback that form has been sent
+          if(response.ok){
+            // alert("Your response has been sent. Thank you.");
+            toastBodyExample.textContent ="Your message has been sent. Thank you";
+            toastMsgExample.classList.remove("text-bg-danger");
+            toastMsgExample.classList.add("text-bg-success");
+            toastBootstrap.show();
+            return;
+          }
+
+        } catch (error) {
+          // safety net to catch any issues and feedback
+          // catch the error and render meaning feedback
+          // console.log("unable to send data")
+          // alert("Unable to send message. Please try again");
+          toastBodyExample.textContent ="Error sending message. Please try again";
+          toastMsgExample.classList.remove("text-bg-success");
+          toastMsgExample.classList.add("text-bg-danger");
+          // remove colour to add colour. Green alr..then it rmb old colour
+          toastBootstrap.show();
+          return;
+          // adjust the getform.io so that it's wrong, if cannot send to server then will reflect this msg
+          
+        }
+      }  
+    </script>
+
+  </body>
+</html>
