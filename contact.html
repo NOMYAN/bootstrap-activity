@@ -13,8 +13,6 @@
       crossorigin="anonymous"
     />
      
-  <!-- Import custom stylesheet for the webpage-->
-  <!-- after bootstrap cause read top-down -->
    <link rel="stylesheet" href="./styles/styles.css">
 
   </head>
@@ -43,13 +41,11 @@
       <!-- Navigation Bar -->
       <!-- !https://getbootstrap.com/docs/5.3/components/navbar/#nav -->
       <nav class="navbar navbar-expand-md navbar-dark">
-        <!-- change expand to see, set navbardark -->
-        <!-- Remove bg-body-tertiary"> -->
         <div class="container-fluid">
 
           <a class="navbar-brand" href="#">
           <img src="./img/logo.png" alt="Company Logo" class="img-fluid">
-          <!-- "img-fluid" is responsive img -->
+
         </a>
 
 
@@ -134,20 +130,20 @@
     crossorigin="anonymous"
     ></script>
 
+    <!-- Import custom scripts -->
+     <script src="./scripts/util/util.js"></script>
+
     <!-- Create script and input javascript(anonymous function) from https://getbootstrap.com/docs/5.3/forms/validation/ -->
     <script>
-      // listen for and process a submit event
-      // where function submitForm() is invoked
       async function submitForm(){
+
         // after using await fetch request, handinhand
         event.preventDefault();
         event.stopPropagation();
-        // alert("Your form has been submitted");
 
         // Create instance of toast -Update to toast in function submitForm():
         const toastMsgExample = document.getElementById('msg-toast');
         const toastBodyExample = document.getElementById('toast-body');
-        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastMsgExample);
 
 
         // create constant variables to capture form inputs
@@ -155,48 +151,43 @@
         const email = document.getElementById("txtEmail");
         const message = document.getElementById("txtMessage");
 
-        // to trace values captured by our constant variables to process further
-        // this mean the interaction start to take place alr
-        // to track if page is capturing correct data to process
-        console.log(email.value);
-        console.log(message.value);
-
-        // trap unsuccessful event for textEmail or txtmessage
-        // as long as any value is key in, it works, unless declare
         if(email.value === "" || message.value === "" ){
-          toastBodyExample.textContent = "Please enter all inputs";
-          toastMsgExample.classList.remove("text-bg-success");
-          toastMsgExample.classList.add("text-bg-danger");
-          toastBootstrap.show();
-          // alert("Invalid inputs. Please enter all fields correctly."); change to bootstrap
+          showToast({
+            toastElement: toastMsgExample,
+            toastBodyElement: toastBodyExample,
+            bgColor:"danger",
+            msg: "Please enter all inputs"
+          });
+        
+
           return;
         }
-        // 2 =signs vs 3 =signs
       
-
         // trap unsuccessful event where txtEmail is invalid
         // using regular expressions to check for valid email
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        // eg. @something.com
         if(!emailRegex.test(email.value)){
-          // alert("Invalid email entered.");
-          toastBodyExample.textContent = "Email is not valid";
-          toastMsgExample.classList.remove("text-bg-success");
-          toastMsgExample.classList.add("text-bg-danger");
-          toastBootstrap.show();
+
+          showToast({
+            toastElement: toastMsgExample,
+            toastBodyElement: toastBodyExample,
+            bgColor:"danger",
+            msg: "Email is invalid"
+          });
           return;
-          // syntax 
         }
 
         // trap unsuccessful event where txtMsg is invalid
         // using a regular expression to check for injections or sql injections
         const msgRegex = /^[a-zA-Z0-9\s.,!?'"-]*$/;
         if(!msgRegex.test(message.value)){
-          // alert("Please enter a valid message.")
-          toastBodyExample.textContent = "Message is invalid";
-          toastMsgExample.classList.remove("text-bg-success");
-          toastMsgExample.classList.add("text-bg-danger");
-          toastBootstrap.show();
+
+          showToast({
+            toastElement: toastMsgExample,
+            toastBodyElement: toastBodyExample,
+            bgColor:"danger",
+            msg: "Please enter correctly."
+          });
           return;
         }
 
@@ -204,11 +195,6 @@
         // eg. ask question and get answers
         // create a Javascript object to store our form data
         const formData ={email:email.value, message:message.value};
-        // const = storing data into a variable that cannot be change. To let it be changeable use 'let'
-        // storing javascript object. Key: data
-       
-        // implement a try/catch (exception handling) block to send our message to an endpoint
-        // exception handling = handle errors that take place during runtime.
         try {
 
           // attempt to execute code below
@@ -216,37 +202,38 @@
           // call fetch request to send data over to server
           // send data to server need to wait so put await
           method: "POST",
-          // 4 methods, but need to use fetch request
           headers:{"Content-Type": "application/json"},
           body: JSON.stringify(formData)
           });
 
           // if response.ok, provide feedback that form has been sent
           if(response.ok){
-            // alert("Your response has been sent. Thank you.");
-            toastBodyExample.textContent ="Your message has been sent. Thank you";
-            toastMsgExample.classList.remove("text-bg-danger");
-            toastMsgExample.classList.add("text-bg-success");
-            toastBootstrap.show();
+
+            showToast({
+            toastElement: toastMsgExample,
+            toastBodyElement: toastBodyExample,
+            bgColor:"success",
+            msg: "Msg is sent. Thank you."
+          });
             return;
           }
 
         } catch (error) {
           // safety net to catch any issues and feedback
           // catch the error and render meaning feedback
-          // console.log("unable to send data")
-          // alert("Unable to send message. Please try again");
-          toastBodyExample.textContent ="Error sending message. Please try again";
-          toastMsgExample.classList.remove("text-bg-success");
-          toastMsgExample.classList.add("text-bg-danger");
-          // remove colour to add colour. Green alr..then it rmb old colour
-          toastBootstrap.show();
+
+          showToast({
+            toastElement: toastMsgExample,
+            toastBodyElement: toastBodyExample,
+            bgColor:"danger",
+            msg: "Error sending message. Please try again."
+          });
           return;
-          // adjust the getform.io so that it's wrong, if cannot send to server then will reflect this msg
           
         }
       }  
+   
+      
     </script>
-
   </body>
 </html>
